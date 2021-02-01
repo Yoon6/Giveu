@@ -1,0 +1,14 @@
+<h1>목록</h1>
+
+<h3><a href="{% url 'create' %}">글쓰기</a></h3>
+
+
+
+{% for post in posts.all %}
+    <p>---------------------------</p>
+    <h2><a href="{% url 'detail' post.id %}">{{post.title}}</a></h2>
+    <h3>{{post.name}}</h3>
+    <p>{{post.bodyText}}</p>
+    <p>{{post.productType}}</p>
+    <p>{{post.productNum}}</p>
+{% endfor %}

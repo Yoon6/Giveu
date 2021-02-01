@@ -1,0 +1,9 @@
+<h2><a href="{% url 'home' %}">HOME</a></h2>
+
+<h1>글쓰기</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="글쓰기">
+</form>
