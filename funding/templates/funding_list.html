@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giveu - 펀딩</title>
+</head>
+
+<body>
+    <h1>펀딩 목록 페이지입니다.</h1>
+    <a href="{% url 'funding_create' %}"><button>펀딩 글 작성</button></a>
+
+    {% for funding in funding_list %}
+    <hr>
+    <div>
+        <img src="{{ funding.photo.url }}" style="max-height: 150px;">
+        <a href="{% url 'funding_detail' funding.id %}">
+            <h2>{{ funding.title }}</h2>
+        </a>
+        <p>등록일 : {{ funding.created_at }}</p>
+        <p>펀딩 설명 : {{ funding.description }}</p>
+        <p>펀딩 수 : {{ funding.funding_count }}</p>
+    </div>
+    {% endfor %}
+</body>
+
+</html>
