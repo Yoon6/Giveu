@@ -1,0 +1,36 @@
+body {
+	width: 100%;
+	height: 100%;
+}
+.top {
+	width: 100%;
+	height: 7%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid rgb(200, 204, 202);
+}
+.logo {
+	font-size: 1.8rem;
+	margin-left: 1%;
+	font-weight: 900;
+}
+.bottom {
+	width: 100%;
+	height: 40%;
+	background-image: url(https://cdn.pixabay.com/index/2021/02/01/19-24-41-250_1920x430.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	opacity: 0.85;
+}
+.slogan {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.5rem;
+	font-weight: 900;
+	font-family: sans-serif;
+	color: white;
+}
