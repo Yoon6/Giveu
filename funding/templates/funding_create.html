@@ -9,7 +9,7 @@
     <script src="../semantic/semantic.js"></script>
 </head>
 <body>
-    <!-- <div id="header"> 제가 만든 헤더좀 넣어주실분?</div> -->
+
     <h1>펀딩 글 작성 페이지입니다</h1>
     <form action="{% url 'funding_create' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
