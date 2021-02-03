@@ -6,19 +6,20 @@
 {% endblock %}
 
 {% block content %}
-<h1>목록</h1>
-
-<h3><a href="{% url 'create' %}">글쓰기</a></h3>
-
-
-
-{% for post in posts.all %}
-<hr>
-<img src="{{ post.picture.url }}" style="max-height: 150px;">
-<h2><a href="{% url 'detail' post.id %}">제목 : {{post.title}}</a></h2>
-<p>물품 : {{post.productType}}</p>
-<p>수량 : {{post.productNum}}</p>
-{% endfor %}
-<hr>
-
+<div class="container">
+    <h1 class="title">Request List</h1>
+    <h3><a href="{% url 'create' %}">글쓰기</a></h3>
+    <div class="card-container">
+        {% for post in posts.all %}
+        <a href="{% url 'detail' post.id %}" class="funding-link">
+            <img src="{{ post.picture.url }}" class="funding-img">
+            <div class="funding-desc">
+                <b class="item-title">{{ post.title }}</b>
+                <b class="item-type">{{post.productType}}</b>
+                <b class="item-deadlint">수량 : {{post.productNum}}</b>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
