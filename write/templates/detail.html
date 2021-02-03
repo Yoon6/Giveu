@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2><a href="{% url 'home' %}">HOME</a></h2><br><br>
-    <h3><a href="{% url 'update' post.pk %}">수정하기</a>   <a href="{% url 'delete' post.pk %}">삭제하기</a></h3>
+{% extends 'base.html' %}
+{% load static %}
 
-    <h1> 상세 페이지</h1>
-    <br>
-    <p>id : {{post.pk}}</p>
-    <img src="{{ post.picture.url }}" style="max-height: 300px;">
-    <h2>title : {{post.title}}</h2>
-    <h3>name : {{post.name}}</h3>
-    <p>email : {{post.email}}</p>
-    <p>address : {{post.address}}</p>
-    <p>productType : {{post.productType}}</p>
-    <p>productNum : {{post.productNum}}</p>
-    <p>bodyText : {{post.bodyText}}</p>
-    <br>
-    <br>
-</body>
-</html>
+{% block content %}
+<h3><a href="{% url 'update' post.pk %}">수정하기</a> <a href="{% url 'delete' post.pk %}">삭제하기</a></h3>
+<h3><a href="{% url 'funding_create' post.pk %}">채택하기</a></h3>
+
+<h1> 상세 페이지</h1>
+<br>
+<p>id : {{post.pk}}</p>
+<img src="{{ post.picture.url }}" style="max-height: 300px;">
+<h2>title : {{post.title}}</h2>
+<h3>name : {{post.name}}</h3>
+<p>email : {{post.email}}</p>
+<p>address : {{post.address}}</p>
+<p>productType : {{post.productType}}</p>
+<p>productNum : {{post.productNum}}</p>
+<p>bodyText : {{post.bodyText}}</p>
+<br>
+<br>
+{% endblock %}

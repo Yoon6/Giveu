@@ -5,8 +5,9 @@
 <h1>{{ funding.title }}</h1>
 <img src="{{ funding.photo.url }}" style="max-height: 100px;">
 <p>등록일 : {{ funding.created_at }}</p>
-<p>펀딩 설명 : {{ funding.description }}</p>
-<p id="fundingCount">펀딩 수 : {{ funding.funding_count }}</p>
+<p>마감 기한 : {{ funding.deadline }}</p>
+<p>펀딩 설명 : {{ funding.bodyText }}</p>
+<p id="fundingCount">펀딩 진행 상황 : {{ funding.current_product_num }} / {{ funding.product_num }}</p>
 
 <button id="funding" onclick="fundingCounter(this)" name="{{funding.id}}">펀딩하기</button><br>
 <a href="{% url 'funding_list' %}"><button>목록으로</button></a>
@@ -28,11 +29,16 @@
             },
             dataType: "json",
             success: function (response) {
-                document.getElementById("fundingCount").innerText = '펀딩 수 : ' + response.funding_count;
-                
                 const fundingButton = document.getElementById('funding');
-                alert("기부해주신 따듯한 마음에 감사드립니다.");
-                fundingButton.disabled = true;
+                if (response.message == 'Success') {
+                    document.getElementById("fundingCount").innerText = '펀딩 진행 상황 : ' + response.funding_count + ' / ' + response.funding_product_num;
+                    alert("기부해주신 따듯한 마음에 감사드립니다.");
+                    fundingButton.disabled = true;
+                }
+                else {
+                    alert("펀딩이 마감되었습니다. 당신의 따듯한 관심에 감사드립니다.");
+                    fundingButton.disabled = true;
+                }
             },
             error: function (request, status, error) {
                 alert("통신 실패")

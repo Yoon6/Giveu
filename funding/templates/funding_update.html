@@ -1,24 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giveu - 펀딩</title>
-</head>
+{% block headscript %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/request.css' %}">
+{% endblock %}
 
-<body>
-    <h1>펀딩 글 수정 페이지입니다.</h1>
-    <form action="{% url 'funding_update' funding.id %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <span>펀딩 프로젝트 이름</span>
-        <input type="text" name="title" placeholder="펀딩 이름" value="{{ funding.title }}" required><br>
-        <span>펀딩 설명</span>
-        <input type="text" name="description" placeholder="펀딩 설명" value="{{ funding.description }}" required><br>
-        <span>펀딩 프로젝트 사진</span>
-        <input type="file" name="photo" value="{{ funding.photo.url }}" required><br>
-        <button type="submit">작성 완료</button>
-    </form>
-</body>
+{% block content %}
+    <div class="wrap">
+        <h1>기부 프로젝트 글 작성</h1>
+        <form action="{% url 'funding_update' funding.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <dl>
+                <dt>제목</dt>
+                <dd>{{funding.title}}</dd>
+            </dl>
+            <dl>
+                <dt>이름</dt>
+                <dd>{{funding.name}}</dd>
+            </dl>
+            <dl>
+                <dt>신청 내용</dt>
+                <dd>{{funding.bodyText}}</dd>
+            </dl>
+            <dl>
+                <dt>물품 유형</dt>
+                <dd>{{funding.product_type}}</dd>
+            </dl>
+            <dl>
+                <dt>목표 물품 수량</dt>
+                <dd>{{funding.product_num}}</dd>
+            </dl>
+            <dl>
+                <dt>이메일</dt>
+                <dd>{{funding.email}}</dd>
+            </dl>
+            <dl>
+                <dt>최종 목적지</dt>
+                <dd>{{funding.address}}</dd>
+            </dl>
+            <br>
+            <dl>
+                <dt>관련 이미지</dt>
+                <img src="{{funding.photo.url}}" style="max-width: 500px; max-height: 300px;">
+                <!-- <dd>(관련 사진)</dd> -->
+            </dl>
+            <!-- 아래는 직접 입력하게 되는 입력 폼입니다. -->
+            <dl>
+                <dt>업체/단체 명</dt>
+                <dd><input type="text" class="input-box" name="community" placeholder="ex. 유니세프" value="{{funding.community}}" required></dd>
+            </dl>
+            <dl>
+                <dt>물품 받을 주소</dt>
+                <dd><input type="text" class="input-box" name="communityAddress" placeholder="ex. 서울특별시..." value="{{funding.community_address}}" required></dd>
+            </dl>
+            <dl>
+                <dt>마감 기한</dt>
+                <dd><input type="text" class="input-box" name="deadline" placeholder="ex. 2021.02.07" value="{{funding.deadline}}" required></dd>
+            </dl>
 
-</html>
+            <input type="submit" value="제출">
+        </form>
+    </div>
+{% endblock %}

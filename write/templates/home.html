@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>목록</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-    <h3><a href="{% url 'create' %}">글쓰기</a></h3>
+{% block headscript %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/list.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>목록</h1>
+
+<h3><a href="{% url 'create' %}">글쓰기</a></h3>
 
 
 
-    {% for post in posts.all %}
-        <hr>
-        <img src="{{ post.picture.url }}" style="max-height: 150px;">
-        <h2><a href="{% url 'detail' post.id %}">제목 : {{post.title}}</a></h2>
-        <p>물품 : {{post.productType}}</p>
-        <p>수량 : {{post.productNum}}</p>
-    {% endfor %}
-    <hr>
-</body>
-</html>
+{% for post in posts.all %}
+<hr>
+<img src="{{ post.picture.url }}" style="max-height: 150px;">
+<h2><a href="{% url 'detail' post.id %}">제목 : {{post.title}}</a></h2>
+<p>물품 : {{post.productType}}</p>
+<p>수량 : {{post.productNum}}</p>
+{% endfor %}
+<hr>
+
+{% endblock %}
