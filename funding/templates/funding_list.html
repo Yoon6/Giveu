@@ -8,16 +8,19 @@
 {% block content %}
 <div class="container">
     <h1 class="title">Funding List</h1>
-    <!-- <a href="{% url 'funding_create' %}"><button>펀딩 글 작성</button></a> -->
     <div class="card-container">
         {% for funding in funding_list %}
         <a href="{% url 'funding_detail' funding.id %}" class="funding-link">
             <img src="{{ funding.photo.url }}" class="funding-img">
             <div class="funding-desc">
                 <b class="item-title">{{ funding.title }}</b>
-                <b class="item-type">연필</b>
-                <b class="item-current">{{ funding.funding_count }} / 100</b>
-                <b class="item-deadlint">펀딩기한 : {{ funding.created_at }} ~ 2021년-20월-20일</b>
+                <b class="item-type">{{ funding.product_type }}</b>
+                {% if funding.current_product_num == funding.product_num %}
+                <b class="item-current" style="color: red;">펀딩 마감</b>
+                {% else %}
+                <b class="item-current">{{ funding.current_product_num }} / {{ funding.product_num }}</b>
+                {% endif %}
+                <b class="item-deadlint">펀딩기한 : {{ funding.created_at }} ~ {{ funding.deadline }}</b>
             </div>
             <!-- <p>등록일 : {{ funding.created_at }}</p>
                         <p>펀딩 설명 : {{ funding.description }}</p>

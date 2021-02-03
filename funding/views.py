@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.views.decorators.http import require_POST
 
 from .models import Funding
+from write.models import Post
 
 import json
 
@@ -24,15 +25,28 @@ def funding_list(request):
     GET : create 페이지
     POST : 작성한 펀딩 글로 redirect
 '''
-def funding_create(request):
+def funding_create(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+
     if request.method == 'POST':
         funding = Funding()
-        funding.title = request.POST['title']
-        funding.description = request.POST['description']
-        funding.photo = request.FILES['photo']
+
+        funding.name = post.name
+        funding.title = post.title
+        funding.bodyText = post.bodyText
+        funding.product_type = post.productType
+        funding.product_num = post.productNum
+        funding.email = post.email
+        funding.address = post.address
+        funding.photo = post.picture
+        funding.deadline = request.POST['deadline']
+        funding.community = request.POST['community']
+        funding.community_address = request.POST['communityAddress']
         funding.save()
+
         return redirect('funding_detail', funding.id)
-    return render(request, "funding_create.html")
+
+    return render(request, "funding_create.html", {"post": post})
 
 
 '''
@@ -56,9 +70,9 @@ def funding_update(request, funding_id):
     funding = get_object_or_404(Funding, pk=funding_id)
 
     if request.method == 'POST':
-        funding.title = request.POST['title']
-        funding.description = request.POST['description']
-        funding.photo = request.FILES['photo']
+        funding.community = request.POST['community']
+        funding.community_address = request.POST['communityAddress']
+        funding.deadline = request.POST['deadline']
         funding.save()
         return redirect('funding_detail', funding.id)
 
@@ -87,15 +101,16 @@ def funding_counter(request):
 
     funding = get_object_or_404(Funding, pk=funding_id)
 
-    try:
-        funding.funding_counter() # 해당 펀딩 글의 펀딩 카운트 1 증가
+    result = funding.funding_counter() # 해당 펀딩 글의 펀딩 카운트 1 증가
+    if result != -1:
         message = 'Success'
-    except:
+    else:
         message = 'Fail'
 
     context = {
         "message": message,
-        "funding_count": funding.funding_count,
+        "funding_count": funding.current_product_num,
+        "funding_product_num": funding.product_num,
     }
 
     return HttpResponse(json.dumps(context), content_type="application/json")

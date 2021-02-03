@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
     <h2><a href="{% url 'home' %}">목록으로</a></h2><br><br>
     <h3><a href="{% url 'update' post.pk %}">수정하기</a>   <a href="{% url 'delete' post.pk %}">삭제하기</a></h3>
+    <h3><a href="{% url 'funding_create' post.pk %}">채택하기</a></h3>
 
     <h1> 상세 페이지</h1>
     <br>

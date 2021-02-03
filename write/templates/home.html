@@ -8,7 +8,7 @@
 {% block content %}
 <div class="container">
     <h1 class="title">Request List</h1>
-    <!-- <a href="{% url 'create' %}"><button>펀딩 글 작성</button></a> -->
+    <h3><a href="{% url 'create' %}">글쓰기</a></h3>
     <div class="card-container">
         {% for post in posts.all %}
         <a href="{% url 'detail' post.id %}" class="funding-link">
@@ -18,9 +18,6 @@
                 <b class="item-type">{{post.productType}}</b>
                 <b class="item-deadlint">수량 : {{post.productNum}}</b>
             </div>
-            <!-- <p>등록일 : {{ funding.created_at }}</p>
-                        <p>펀딩 설명 : {{ funding.description }}</p>
-                        <p>펀딩 수 : {{ funding.funding_count }}</p> -->
         </a>
         {% endfor %}
     </div>

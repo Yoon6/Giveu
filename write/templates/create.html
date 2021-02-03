@@ -1,18 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block headscript %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/request.css' %}">
+{% endblock %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giveu - 펀딩</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.css' %}">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="{% static 'semantic/semantic.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'style/request.css' %}">
-</head>
-<body>
     <div class="wrap">
         <h1>펀딩 신청</h1>
 
@@ -61,8 +54,4 @@
             <input type="submit" value="제출">
         </form>
     </div>
-</body>
-</html>
-
 {% endblock %}
-
