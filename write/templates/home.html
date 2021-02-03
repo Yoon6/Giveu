@@ -1,24 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>목록</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-    <h3><a href="{% url 'create' %}">글쓰기</a></h3>
+{% block headscript %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/list.css' %}">
+{% endblock %}
 
-
-
-    {% for post in posts.all %}
-        <hr>
-        <img src="{{ post.picture.url }}" style="max-height: 150px;">
-        <h2><a href="{% url 'detail' post.id %}">제목 : {{post.title}}</a></h2>
-        <p>물품 : {{post.productType}}</p>
-        <p>수량 : {{post.productNum}}</p>
-    {% endfor %}
-    <hr>
-</body>
-</html>
+{% block content %}
+<div class="container">
+    <h1 class="title">Request List</h1>
+    <!-- <a href="{% url 'create' %}"><button>펀딩 글 작성</button></a> -->
+    <div class="card-container">
+        {% for post in posts.all %}
+        <a href="{% url 'detail' post.id %}" class="funding-link">
+            <img src="{{ post.picture.url }}" class="funding-img">
+            <div class="funding-desc">
+                <b class="item-title">{{ post.title }}</b>
+                <b class="item-type">{{post.productType}}</b>
+                <b class="item-deadlint">수량 : {{post.productNum}}</b>
+            </div>
+            <!-- <p>등록일 : {{ funding.created_at }}</p>
+                        <p>펀딩 설명 : {{ funding.description }}</p>
+                        <p>펀딩 수 : {{ funding.funding_count }}</p> -->
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
