@@ -1,9 +1,67 @@
-<h1>수정하기</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giveu - 펀딩</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.css' %}">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="{% static 'semantic/semantic.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style/request.css' %}">
+</head>
+<body>
+    <div class="wrap">
+        <h1>수정하기</h1>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table>
-        {{form.as_table}}
-    </table>
-    <input type="submit" value="수정하기">
-</form>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <dl>
+                <dt>{{form.title.label_tag}}</dt>
+                <dd>{{form.title}}</dd>
+            </dl>
+
+            <dl>
+                <dt>{{form.name.label_tag}}</dt>
+                <dd>{{form.name}}</dd>
+            </dl>
+
+            <dl>
+                <dt>{{form.bodyText.label_tag}}</dt>
+                <dd>{{form.bodyText}}</dd>
+            </dl>
+
+            <dl>
+                <dt>{{form.productType.label_tag}}</dt>
+                <dd>{{form.productType}}</dd>
+            </dl>
+
+            <dl>
+                <dt>{{form.productNum.label_tag}}</dt>
+                <dd>{{form.productNum}}</dd>
+            </dl>
+
+            <dl>
+                <dt>{{form.email.label_tag}}</dt>
+                <dd>{{form.email}}</dd>
+            </dl>
+
+            <dl>
+                <dt>{{form.address.label_tag}}</dt>
+                <dd>{{form.address}}</dd>
+            </dl>
+
+            <dl>
+                <dt>{{form.picture.label_tag}}</dt>
+                <dd>{{form.picture}}</dd>
+            </dl>
+
+            <input type="submit" value="수정">
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock %}
