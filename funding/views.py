@@ -1,5 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
+from django.views.decorators.http import require_POST
+
 from .models import Funding
+
+import json
 
 # Create your views here.
 
@@ -70,3 +74,28 @@ def funding_delete(request, funding_id):
     funding = get_object_or_404(Funding, pk=funding_id)
     funding.delete()
     return redirect('funding_list')
+
+
+'''
+펀딩하기 버튼을 눌러 해당 펀딩 게시글의 funding_count를 1 증가시키는 함수
+@param : request
+@return : json
+'''
+@require_POST
+def funding_counter(request):
+    funding_id = request.POST['funding_id']
+
+    funding = get_object_or_404(Funding, pk=funding_id)
+
+    try:
+        funding.funding_counter() # 해당 펀딩 글의 펀딩 카운트 1 증가
+        message = 'Success'
+    except:
+        message = 'Fail'
+
+    context = {
+        "message": message,
+        "funding_count": funding.funding_count,
+    }
+
+    return HttpResponse(json.dumps(context), content_type="application/json")

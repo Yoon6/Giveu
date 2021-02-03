@@ -1,23 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giveu - 펀딩</title>
-</head>
+{% block content %}
+<h1>{{ funding.title }}</h1>
+<img src="{{ funding.photo.url }}" style="max-height: 100px;">
+<p>등록일 : {{ funding.created_at }}</p>
+<p>펀딩 설명 : {{ funding.description }}</p>
+<p id="fundingCount">펀딩 수 : {{ funding.funding_count }}</p>
 
-<body>
-    <h1>{{ funding.title }}</h1>
-    <img src="{{ funding.photo.url }}" style="max-height: 100px;">
-    <p>등록일 : {{ funding.created_at }}</p>
-    <p>펀딩 설명 : {{ funding.description }}</p>
-    <p>펀딩 수 : {{ funding.funding_count }}</p>
+<button id="funding" onclick="fundingCounter(this)" name="{{funding.id}}">펀딩하기</button><br>
+<a href="{% url 'funding_list' %}"><button>목록으로</button></a>
+<a href="{% url 'funding_update' funding.id %}"><button>수정하기</button></a>
+<a href="{% url 'funding_delete' funding.id %}"><button>삭제하기</button></a>
+{% endblock %}
 
-    <button>펀딩하기</button><br>
-    <a href="{% url 'funding_list' %}"><button>목록으로</button></a>
-    <a href="{% url 'funding_update' funding.id %}"><button>수정하기</button></a>
-    <a href="{% url 'funding_delete' funding.id %}"><button>삭제하기</button></a>
-</body>
+{% block script %}
+<script>
+    function fundingCounter(e) {
+        id = $(e).attr('name');
 
-</html>
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'count' %}",
+            data: {
+                "funding_id": id,
+                "csrfmiddlewaretoken": '{{ csrf_token }}',
+            },
+            dataType: "json",
+            success: function (response) {
+                document.getElementById("fundingCount").innerText = '펀딩 수 : ' + response.funding_count;
+                
+                const fundingButton = document.getElementById('funding');
+                alert("기부해주신 따듯한 마음에 감사드립니다.");
+                fundingButton.disabled = true;
+            },
+            error: function (request, status, error) {
+                alert("통신 실패")
+            },
+        });
+    }
+</script>
+{% endblock %}
