@@ -1,38 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block headscript %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/list.css' %}">
+{% endblock %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.css' %}">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="{% static 'semantic/semantic.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'style/list.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h1 class="title">Funding List</h1>
-        <!-- <a href="{% url 'funding_create' %}"><button>펀딩 글 작성</button></a> -->
-        <div class="card-container">
+<div class="container">
+    <h1 class="title">Funding List</h1>
+    <!-- <a href="{% url 'funding_create' %}"><button>펀딩 글 작성</button></a> -->
+    <div class="card-container">
         {% for funding in funding_list %}
-                <a href="{% url 'funding_detail' funding.id %}" class="funding-link">
-                        <img src="{{ funding.photo.url }}" class="funding-img">
-                        <div class="funding-desc">
-                            <b class="item-title">{{ funding.title }}</b>
-                            <b class="item-type">연필</b>
-                            <b class="item-current">{{ funding.funding_count }} / 100</b>
-                            <b class="item-deadlint">펀딩기한 : {{ funding.created_at }} ~ 2021년-20월-20일</b>
-                        </div>
-                        <!-- <p>등록일 : {{ funding.created_at }}</p>
+        <a href="{% url 'funding_detail' funding.id %}" class="funding-link">
+            <img src="{{ funding.photo.url }}" class="funding-img">
+            <div class="funding-desc">
+                <b class="item-title">{{ funding.title }}</b>
+                <b class="item-type">연필</b>
+                <b class="item-current">{{ funding.funding_count }} / 100</b>
+                <b class="item-deadlint">펀딩기한 : {{ funding.created_at }} ~ 2021년-20월-20일</b>
+            </div>
+            <!-- <p>등록일 : {{ funding.created_at }}</p>
                         <p>펀딩 설명 : {{ funding.description }}</p>
                         <p>펀딩 수 : {{ funding.funding_count }}</p> -->
-                </a>
+        </a>
         {% endfor %}
-        </div>
     </div>
-</body>
-</html>
+</div>
 {% endblock %}
