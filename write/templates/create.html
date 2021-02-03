@@ -1,9 +1,43 @@
-<h2><a href="{% url 'home' %}">HOME</a></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write new Request</title>
+</head>
+<body>
+    <h2><a href="{% url 'home' %}">HOME</a></h2>
 
-<h1>글쓰기</h1>
+    <h1>글쓰기</h1>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="글쓰기">
-</form>
+    <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <span>Title</span>
+        <input type="text" name="title" required><br>
+
+        <span>Name</span>
+        <input type="text" name="name" required><br>
+
+        <span>Address</span>
+        <input type="text" name="address" required><br>
+
+        <span>Email</span>
+        <input type="text" name="email" required><br>
+
+        <span>ProductType</span>
+        <input type="text" name="productType" required><br>
+
+        <span>ProductNum</span>
+        <input type="number" name="productNum" required><br>
+
+        <span>bodyText</span>
+        <textarea name="bodyText" cols="40" rows="10" required></textarea><br>
+
+        <span>Picture</span>
+        <input type="file" name="picture" required0><br><br>
+
+        <button type="submit">Write</button>
+    </form>
+</body>
+</html>
+

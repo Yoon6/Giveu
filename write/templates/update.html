@@ -1,7 +1,40 @@
-<h1>수정하기</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update the Request</title>
+</head>
+<body>
+    <h1>수정하기</h1>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="수정하기">
-</form>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <span>Title</span>
+        <input type="text" name="title" value={{post.title}} required><br>
+
+        <span>Name</span>
+        <input type="text" name="name" value={{post.name}} required><br>
+
+        <span>Address</span>
+        <input type="text" name="address" value={{post.address}} required><br>
+
+        <span>Email</span>
+        <input type="text" name="email" value={{post.email}} required><br>
+
+        <span>ProductType</span>
+        <input type="text" name="productType" value={{post.productType}} required><br>
+
+        <span>ProductNum</span>
+        <input type="number" name="productNum" value={{post.productNum}} required><br>
+
+        <span>bodyText</span>
+        <textarea name="bodyText" cols="40" rows="10" value={{post.bodyText}}  required></textarea><br>
+
+        <span>Picture</span>
+        <input type="file" name="picture" required><br><br>
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

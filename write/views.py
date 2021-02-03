@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
-from .forms import PostForm
 
 # Create your views here.
 
@@ -10,15 +9,19 @@ def home(request):
 
 
 def create(request):
-    post = Post()
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = PostForm()
-    return render(request, 'create.html', {'form':form})
+    if request.method == 'POST':
+        post = Post()
+        post.title = request.POST['title']
+        post.name = request.POST['name']
+        post.address = request.POST['address']
+        post.email = request.POST['email']
+        post.productType = request.POST['productType']
+        post.productNum = request.POST['productNum']
+        post.bodyText = request.POST['bodyText']
+        post.picture = request.FILES['picture']
+        post.save()
+        return redirect('detail', post.pk)
+    return render(request, 'create.html')
 
 def detail(request, post_id):
     post_detail = get_object_or_404(Post, pk=post_id)
@@ -31,11 +34,17 @@ def delete(request, post_id):
 
 def update(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
+
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        form = PostForm(instance=post)
-    return render(request, 'update.html', {'form':form})
+        post = Post()
+        post.title = request.POST['title']
+        post.name = request.POST['name']
+        post.address = request.POST['address']
+        post.email = request.POST['email']
+        post.productType = request.POST['productType']
+        post.productNum = request.POST['productNum']
+        post.bodyText = request.POST['bodyText']
+        post.picture = request.FILES['picture']
+        post.save()
+        return redirect('detail', post.pk)
+    return render(request, 'update.html', {'post':post})
