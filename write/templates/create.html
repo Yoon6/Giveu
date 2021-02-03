@@ -1,9 +1,33 @@
-<h2><a href="{% url 'home' %}">HOME</a></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* https://docs.djangoproject.com/en/3.1/topics/forms/ */
+        label{
+            color: blue;
+        }
+        #id_name{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h2><a href="{% url 'home' %}">HOME</a></h2>
 
-<h1>글쓰기</h1>
+    <h1>글쓰기</h1>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="글쓰기">
-</form>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <button type="submit">Write</button>
+    </form>
+</body>
+</html>

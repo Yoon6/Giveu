@@ -2,6 +2,8 @@
 
 <form action="" method="POST">
     {% csrf_token %}
-    {{form.as_p}}
+    <table>
+        {{form.as_table}}
+    </table>
     <input type="submit" value="수정하기">
 </form>
