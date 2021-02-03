@@ -49,8 +49,7 @@ body {
 }
 
 .wrap input[type='text'],
-.wrap input[type='tel'],
-.wrap input[type='email'],
+.wrap input[type='number'],
 .wrap select {
 	padding: 10px;
 	border: 1px solid #ccc;
