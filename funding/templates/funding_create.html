@@ -1,16 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giveu - 펀딩</title>
-    <link rel="stylesheet" type="text/css" href="../semantic/semantic.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> 
-    <script src="../semantic/semantic.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.css' %}">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="{% static 'semantic/semantic.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style/request.css' %}">
 </head>
 <body>
+    <div class="wrap">
+        <h1>펀딩 신청</h1>
+        <form method="POST">
+            <dl>
+                <dt>제목</dt>
+                <dd><input type="text" class="input-box" name="title" placeholder="Title" required></dd>
+            </dl>
+            <dl>
+                <dt>이름</dt>
+                <dd><input type="text" class="input-box" name="name" placeholder="user name" required></dd>
+            </dl>
+            <dl>
+                <dt>신청 내용</dt>
+                <dd><input type="text" name="bodyText" class="desc" required></dd>
+            </dl>
+            <dl>
+                <dt>희망 물품</dt>
+                <dd><input type="text" class="input-box" name="productType" placeholder="Type of product" required></dd>
+            </dl>
+            <dl>
+                <dt>희망 수량</dt>
+                <dd><input type="number" class="input-box" name="productNum" placeholder="num" required></dd>
+            </dl>
+            <dl>
+                <dt>이메일</dt>
+                <dd>
+                    <input type="text" class="input-box" name="email" placeholder="email" required> 
+                </dd>
+            </dl>
+            <dl>
+                <dt>희망 수령 장소</dt>
+                <dd>
+                    <input type="text" class="input-box" name="address" placeholder="destination"required> 
+                </dd>
+            </dl>
+            <dl>
+                <dt>관련 이미지</dt>
+                <dd>
+                    <input class="input-img" type="file" name="picture" required>
+                </dd>
+            </dl>
 
-    <h1>펀딩 글 작성 페이지입니다</h1>
+            <input type="submit" value="제출">
+        </form>
+    </div>
+    <!-- <h1>펀딩 글 작성 페이지입니다</h1>
     <form action="{% url 'funding_create' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <span>펀딩 프로젝트 이름</span>
@@ -20,6 +68,7 @@
     <span>펀딩 프로젝트 사진</span>
     <input type="file" name="photo" required><br>
     <button type="submit">작성 완료</button>
-    </form>
+    </form> -->
 </body>
 </html>
+{% endblock %}
