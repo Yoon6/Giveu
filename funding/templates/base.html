@@ -17,7 +17,7 @@
 
 <body>
     <div class="top">
-        <b class="logo">GiveU</b>
+        <b class="logo" onclick="location.href='{% url "funding_list" %}';" style="cursor: pointer">GiveU</b>
         <div>
             <button class="ui positive basic button" onclick="location.href='{% url "create" %}';">Request</button>
             <button class="ui positive basic button" onclick="location.href='{% url "home" %}';">Discover</button>
