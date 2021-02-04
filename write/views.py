@@ -14,8 +14,8 @@ def create(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            instance = form.save()
+            return redirect('detail', post_id = instance.pk)
     else:
         form = PostForm()
     return render(request, 'create.html', {'form':form})

@@ -14,9 +14,11 @@
         <a href="{% url 'detail' post.id %}" class="funding-link">
             <img src="{{ post.picture.url }}" class="funding-img">
             <div class="funding-desc">
-                <b class="item-title">{{ post.title }}</b>
-                <b class="item-type" style="margin: 4%;">품목 : {{post.productType}}</b>
-                <b class="item-deadlint">필요 수량 : {{post.productNum}}</b>
+                <b class="request-title">{{ post.title }}</b>
+                <div class="request-info">
+                    <b class="request-type">품목 : {{post.productType}} | </b>
+                    <b class="request-deadlint">필요 수량 : {{post.productNum}}</b>
+                </div>
             </div>
         </a>
         {% endfor %}

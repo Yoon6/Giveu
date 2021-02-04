@@ -4,7 +4,6 @@
 {% block headscript %}
 <link rel="stylesheet" type="text/css" href="{% static 'style/list.css' %}">
 {% endblock %}
-
 {% block content %}
 <div class="container">
     <h1 class="title">Funding List</h1>
@@ -14,16 +13,21 @@
             <img src="{{ funding.photo.url }}" class="funding-img">
             <div class="funding-desc">
                 <b class="item-title">{{ funding.title }}</b>
-                <b class="item-type">{{ funding.product_type }}</b>
                 {% if funding.current_product_num == funding.product_num %}
                 <b class="item-current" style="color: red;">펀딩 마감</b>
                 {% else %}
-                <b class="item-current" style="color: rgb(114, 114, 247);">달성률: {{ funding.current_product_num }} / {{ funding.product_num }}</b>
+                <div class="item-current" style="color: rgb(114, 114, 247);"><b class="item-type">{{ funding.product_type }} | </b>달성률: <b id='cur-num'>{{ funding.current_product_num }}</b> / <b id='final-num'>{{ funding.product_num }}</b></div>
                 {% endif %}
-                <b class="item-deadline">마감기한 : {{ funding.deadline }}</b>
+                <b class="item-deadline">{{ funding.deadline }}일 까지</b>
             </div>
         </a>
         {% endfor %}
     </div>
 </div>
+{% endblock %}
+{% block script %}
+<script>
+    var percent=Math.floor(document.getElementById('cur-num').innerText*100/document.getElementById('final-num').innerText);
+    console.log(percent);
+</script>
 {% endblock %}
