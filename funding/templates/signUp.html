@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiveU</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.css' %}">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="{% static 'semantic/semantic.js' %}"></script>
+    <script>
+        function check(num){
+            if(Number(num) ===1){
+                document.getElementsByName('community')[0].disabled=true;
+                document.getElementsByName('communityAddress')[0].disabled=true;
+            }else{
+                document.getElementsByName('community')[0].disabled=false;
+                document.getElementsByName('communityAddress')[0].disabled=false;
+            }
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style/header.css' %}">
+</head>
+
+<body>
+    <div class="top">
+        <b class="logo">GiveU</b>
+        <div>
+            <button class="ui positive basic button" onclick="location.href='{% url "login" %}';">Login</button>
+            <button class="ui positive basic button" onclick="location.href='{% url "create" %}';">Request</button>
+            <button class="ui positive basic button" onclick="location.href='{% url "home" %}';">Discover</button>
+            <button class="ui positive basic button" onclick="location.href='{% url "funding_list" %}';">Donate</button>
+        </div>
+    </div>
+    <div class="signup-container">
+        <form action method="POST">
+            <div class="ui form" id="check-box">
+                <div class="inline fields">
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="user" onclick="check(1)" onchange="" checked="checked">
+                            <label>개인 회원가입</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" onclick="check(2)" name="user">
+                            <label>업체 회원가입</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="signup-box">
+                <div>
+                    <b class="signup-info">이메일</b><input type="text" name="email" placeholder="ex) 1234@gmail.com"/>
+                </div>
+                <div>
+                    <b class="signup-info">비밀번호</b><input type="text" name="password" placeholder="password"/>
+                </div>
+                <div>
+                    <b class="signup-info">휴대폰 번호</b><input type="text" name="phone" placeholder="ex) 01012345678"/>
+                </div>
+                <div>
+                    <b class="signup-info">소속 단체명</b><input type="text" name="community" placeholder="community" disabled/>
+                </div>
+                <div>
+                    <b class="signup-info">단체 주소</b><input type="text" name="communityAddress" placeholder="address" disabled/>
+                </div>
+            </div>
+            <input type="submit" class="ui primary button" id="signup-btn" value="회원가입">
+        </form>
+    </div>
+    <!-- <div class="login-container">
+            <div class="login-box">
+                <form action method="POST" >
+                    <div class="login-email">이메일 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="email" placeholder="email"/></div>
+                    <div class="login-password" name="password">비밀번호 <input type="text" name="password" placeholder="password"/></div>
+                    <input type="submit" class="ui primary button" id="login-btn" value="로그인">
+                </form>
+            </div>
+            <button class="ui secondary basic button" onclick="location.href='{% url "signUp" %}';">회원 가입</button>
+    </div> -->
+</body>
+
+</html>
