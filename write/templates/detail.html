@@ -1,22 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{%block headscript %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/detail.css' %}">
+{% endblock%}
+
 {% block content %}
-    <h2><a href="{% url 'home' %}">목록으로</a></h2><br><br>
-    <h3><a href="{% url 'update' post.pk %}">수정하기</a>   <a href="{% url 'delete' post.pk %}">삭제하기</a></h3>
-    <h3><a href="{% url 'funding_create' post.pk %}">채택하기</a></h3>
+    <div class="wrap">
+        <button class="ui green basic button" href="{% url 'home' %}">List</button>
+        <div class="ui three item menu">
+            <a class="active item" href="{% url 'update' post.pk %}">수정하기</a>
+            <a class="item" href="{% url 'delete' post.pk %}">삭제하기</a>
+            <a class="item" href="{% url 'funding_create' post.pk %}">채택하기</a>
+        </div><br><br>
 
     <h1> 상세 페이지</h1>
     <br>
-    <p>id : {{post.pk}}</p>
-    <img src="{{ post.picture.url }}" style="max-height: 300px;">
-    <h2>title : {{post.title}}</h2>
-    <h3>name : {{post.name}}</h3>
-    <p>email : {{post.email}}</p>
-    <p>address : {{post.address}}</p>
-    <p>productType : {{post.productType}}</p>
-    <p>productNum : {{post.productNum}}</p>
-    <p>bodyText : {{post.bodyText}}</p>
-    <br>
-    <br>
+
+    <div>
+        <dl>
+            <img src="{{ post.picture.url }}" style="max-height: 300px;">
+        </dl>
+        
+    </div>
+    <div>
+        <h2>Title : {{post.title}}</h2>
+    <h2>id : {{post.pk}}</h2>
+    <h2>Name :{{post.name}}</h2>
+    <h2>Email :{{post.email}}</h2>
+    <h2>Address :{{post.address}}</h2>
+    <h2>Category : {{post.productType}}</h2>
+    <h2>Goal quantity: {{post.productNum}}<br><br></h2>
+    <h2>Content <br><br></h2>
+    <h3>{{post.bodyText}}</h3>
+    </div>
+
+
 {% endblock %}
