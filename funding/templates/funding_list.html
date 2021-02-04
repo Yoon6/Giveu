@@ -18,13 +18,10 @@
                 {% if funding.current_product_num == funding.product_num %}
                 <b class="item-current" style="color: red;">펀딩 마감</b>
                 {% else %}
-                <b class="item-current">{{ funding.current_product_num }} / {{ funding.product_num }}</b>
+                <b class="item-current" style="color: rgb(114, 114, 247);">달성률: {{ funding.current_product_num }} / {{ funding.product_num }}</b>
                 {% endif %}
-                <b class="item-deadlint">펀딩기한 : {{ funding.created_at }} ~ {{ funding.deadline }}</b>
+                <b class="item-deadline">마감기한 : {{ funding.deadline }}</b>
             </div>
-            <!-- <p>등록일 : {{ funding.created_at }}</p>
-                        <p>펀딩 설명 : {{ funding.description }}</p>
-                        <p>펀딩 수 : {{ funding.funding_count }}</p> -->
         </a>
         {% endfor %}
     </div>

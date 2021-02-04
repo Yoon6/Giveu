@@ -15,10 +15,7 @@ body {
 	box-sizing: border-box;
 	background: #fff;
 }
-dd,
-input {
-	width: 100%;
-}
+
 .wrap h1 {
 	text-align: center;
 	padding-bottom: 12px;
@@ -82,8 +79,4 @@ input {
 	font-weight: 600;
 	color: #fff;
 	cursor: pointer;
-}
-
-.input-img {
-	background-color: black;
 }

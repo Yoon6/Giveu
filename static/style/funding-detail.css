@@ -1,0 +1,51 @@
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+* {
+	font-family: 'NanumSquare', sans-serif;
+}
+.funding-detail-container {
+	padding: 2% 4%;
+	display: flex;
+	margin: 0 auto;
+	width: 70%;
+	flex-direction: column;
+	align-items: center;
+	background-color: rgb(248, 248, 248);
+}
+.funding-detail-title {
+	text-align: center;
+	font-size: 2.5rem;
+	border-bottom: 3px solid rgb(230, 223, 223);
+	width: 100%;
+}
+.funding-detail-date {
+	font-size: 0.7rem;
+	opacity: 0.7;
+}
+.funding-detail-desc {
+	width: 100%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	font-size: 1.3rem;
+	border-bottom: 3px solid rgb(230, 223, 223);
+}
+.funding-detail-num {
+	width: 100%;
+	height: 15vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(238, 237, 237);
+}
+.funding-detail-cur {
+	text-align: center;
+	margin: 0;
+	padding: 2%;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+.funding-detail-deadline {
+	font-size: 1.3rem;
+	font-weight: bold;
+	margin: 1%;
+}
