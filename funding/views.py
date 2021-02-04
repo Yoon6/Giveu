@@ -8,6 +8,11 @@ import json
 
 # Create your views here.
 
+def login(request):
+    return render(request, "login.html", {"login":login})
+
+def signUp(request):
+    return render(request, "signUp.html", {"signUp":signUp})
 '''
 펀딩 글이 올라오는 게시판 list 함수
 @param : request

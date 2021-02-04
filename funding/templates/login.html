@@ -10,14 +10,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.css' %}">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="{% static 'semantic/semantic.js' %}"></script>
-    {% block headscript %}
-    {% endblock %}
+    
     <link rel="stylesheet" type="text/css" href="{% static 'style/header.css' %}">
 </head>
 
 <body>
     <div class="top">
-        <b class="logo" onclick="location.href='{% url "funding_list" %}';" style="cursor: pointer">GiveU</b>
+        <b class="logo">GiveU</b>
         <div>
             <button class="ui positive basic button" onclick="location.href='{% url "login" %}';">Login</button>
             <button class="ui positive basic button" onclick="location.href='{% url "create" %}';">Request</button>
@@ -25,15 +24,16 @@
             <button class="ui positive basic button" onclick="location.href='{% url "funding_list" %}';">Donate</button>
         </div>
     </div>
-    <div class="bottom">
-        <b class="slogan">Give your anything</b>
+    <div class="login-container">
+            <div class="login-box">
+                <form action method="POST" >
+                    <div class="login-email">이메일 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="email" placeholder="email"/></div>
+                    <div class="login-password" name="password">비밀번호 &nbsp;<input type="text" name="password" placeholder="password"/></div>
+                    <input type="submit" class="ui primary button" id="login-btn" value="로그인"/>
+                </form>
+            </div>
+            <button class="ui secondary basic button" onclick="location.href='{% url "signUp" %}';">회원 가입</button>
     </div>
-
-    {% block content %}
-    {% endblock %}
 </body>
-
-{% block script %}
-{% endblock %}
 
 </html>
