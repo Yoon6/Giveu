@@ -47,12 +47,27 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 }
 .item-title {
+	text-align: center;
+	display: block;
+	height: 2.8rem;
+	overflow: hidden;
 	font-size: 1.4rem;
 }
 .item-current {
 	color: cornflowerblue;
 	margin: 1%;
+	font-weight: bold;
+}
+.item-type {
+	color: black;
+	font-weight: 400;
+}
+.request-title {
+	font-size: 1.4rem;
+}
+.request-info {
+	font-weight: 400;
 }
