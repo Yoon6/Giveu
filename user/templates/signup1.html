@@ -15,9 +15,13 @@
             if(Number(num) ===1){
                 document.getElementsByName('organization')[0].disabled=true;
                 document.getElementsByName('address')[0].disabled=true;
+                document.getElementsByName('organization')[0].required=false;
+                document.getElementsByName('address')[0].required=false;
             }else{
                 document.getElementsByName('organization')[0].disabled=false;
                 document.getElementsByName('address')[0].disabled=false;
+                document.getElementsByName('organization')[0].required=true;
+                document.getElementsByName('address')[0].required=true;
             }
         }
     </script>
