@@ -40,6 +40,11 @@
             </div>
             <button class="ui secondary basic button" onclick="location.href='{% url "signup" %}';">회원 가입</button>
     </div>
+    {% if error %}
+        <script>
+            alert('email or password is incorrect.');
+        </script>
+    {% endif %}
 </body>
 
 </html>

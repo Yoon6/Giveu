@@ -24,6 +24,11 @@
         {% endfor %}
     </div>
 </div>
+{% if error %}
+    <script>
+        alert('Login is required');
+    </script>
+{% endif %}
 {% endblock %}
 {% block script %}
 <script>
