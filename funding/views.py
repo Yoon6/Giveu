@@ -35,8 +35,9 @@ def funding_create(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
 
     if not request.user.is_organization: ## 업체 회원이 아니면 list로 리다이렉트
-        return redirect('funding_list')
-        
+        funding_list = Funding.objects.all()
+        return render(request, "funding_list.html", {"funding_list":funding_list, 'error':'funding_create'})        
+
     if request.method == 'POST':
         funding = Funding()
 

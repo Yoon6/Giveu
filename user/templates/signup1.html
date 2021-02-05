@@ -17,14 +17,14 @@
                 document.getElementsByName('address')[0].disabled=true;
                 document.getElementsByName('organization')[0].required=false;
                 document.getElementsByName('address')[0].required=false;
-                document.getElementsByName('is_organization')[0].required=false;
+                document.getElementsByName('is_organization')[0].checked=false;
 
             }else{
                 document.getElementsByName('organization')[0].disabled=false;
                 document.getElementsByName('address')[0].disabled=false;
                 document.getElementsByName('organization')[0].required=true;
                 document.getElementsByName('address')[0].required=true;
-                document.getElementsByName('is_organization')[0].required=true;
+                document.getElementsByName('is_organization')[0].checked=true;
             }
         }
     </script>
@@ -32,6 +32,12 @@
 </head>
 
 <body>
+
+    {% if error %}
+        <script>
+            alert('Email already in use.');
+        </script>
+    {% endif %}
     <div class="top">
         <b class="logo" onclick="location.href='{% url "funding_list" %}';" style="cursor: pointer">GiveU</b>
         <div>
@@ -84,9 +90,10 @@
                 <div>
                     <b class="signup-info">{{form.address.label_tag}}</b>{{form.address}}
                 </div>
-                <div>
+                <div width=0 height=0 style="visibility:hidden">
                     <b class="signup-info">{{form.is_organization}}</b>
                 </div>
+                
             </div>
             <input type="submit" class="ui primary button" id="signup-btn" value="회원가입">
         </form>

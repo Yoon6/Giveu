@@ -24,11 +24,20 @@
         {% endfor %}
     </div>
 </div>
-{% if error %}
+
+{% ifequal error "funding_create" %}
     <script>
-        alert('Login is required');
+        alert('No permissions');
     </script>
-{% endif %}
+{% endifequal %}
+{% ifnotequal error "funding_create" %}
+    {% if error %}
+        <script>
+            alert('Login required');
+        </script>
+    {% endif %}
+{% endifnotequal %}
+
 {% endblock %}
 {% block script %}
 <script>
