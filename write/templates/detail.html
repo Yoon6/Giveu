@@ -6,61 +6,59 @@
 {% endblock%}
 
 {% block content %}
-    <div class="wrap">
-        
+<div class="wrap">
+  <h1>{{post.title}}</h1>
+  <br>
 
-    <h1>{{post.title}}</h1>
-    <br>
+  <div>
+    <dl>
+      <img src="{{ post.picture.url }}" style="width:60%">
+    </dl>
 
-        <div>
-            <dl>
-                <img src="{{ post.picture.url }}" style="width:60%">
-            </dl>
-            
-        </div>
-    <div>  
-        <table class="ui definition table" style="font-size:20px;">
-            <thead>
-              </thead>
-            <tbody>
-              <!-- <tr>
-                <td>이름</td>
-                <td>{{post.name}}</td>
-              </tr> -->
-              <tr>
-                <td>Email</td>
-                <td>{{post.email}}</td>
-                
-              </tr>
-              <tr>
-                <td>주소</td>
-                <td>{{post.address}}</td>
-                
-              </tr>
-              <tr>
-                <td>물품</td>
-                <td>{{post.productType}}</td>
-                
-              </tr>
-              <tr>
-                <td>필요 수량</td>
-                <td>{{post.productNum}}</td>
-              </tr>
-              <tr>
-                <td>내용</td>
-                <td>{{post.bodyText}}</td>
-              </tr>
-          </tbody></table>
-    
-        <div class="ui three item menu">
-            <a class="active item" href="{% url 'update' post.pk %}">수정하기</a>
-            <a class="item" href="{% url 'delete' post.pk %}">삭제하기</a>
-            <a class="item" href="{% url 'funding_create' post.pk %}">채택하기</a>
-        </div><br><br>
-        <a href="{% url 'home' %}"><button class="ui primary button">목록으로</button></a>
-    </div>
+  </div>
+  <div>
+    <table class="ui definition table" style="font-size:20px;">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <td>이름</td>
+          <td>{{post.name}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{post.email}}</td>
+
+        </tr>
+        <tr>
+          <td>주소</td>
+          <td>{{post.address}}</td>
+
+        </tr>
+        <tr>
+          <td>물품</td>
+          <td>{{post.productType}}</td>
+
+        </tr>
+        <tr>
+          <td>필요 수량</td>
+          <td>{{post.productNum}}</td>
+        </tr>
+        <tr>
+          <td>내용</td>
+          <td>{{post.bodyText}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ui three item menu">
+      <a class="active item" href="{% url 'update' post.pk %}">수정하기</a>
+      <a class="item" href="{% url 'delete' post.pk %}">삭제하기</a>
+      <a class="item" href="{% url 'funding_create' post.pk %}">채택하기</a>
+    </div><br><br>
+    <a href="{% url 'home' %}"><button class="ui primary button">목록으로</button></a>
+  </div>
 
 
 </div>
 {% endblock %}
-
