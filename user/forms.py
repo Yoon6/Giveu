@@ -12,6 +12,23 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'phone', 'organization', 'address')
+        
+        widgets = {
+            'email': forms.TextInput(attrs={'placeholder':'abc123@gmail.com'}), 
+            'phone': forms.TextInput(attrs={'placeholder':'ex) +821012345678'}), 
+            'organization': forms.TextInput(attrs={'placeholder':'organization', 'disabled':True}),
+            'address': forms.TextInput(attrs={'placeholder':'address', 'disabled':True}), 
+            'password1': forms.TextInput(attrs={'placeholder':'password'}),  
+            'password2': forms.TextInput(attrs={'placeholder':'confirm password'}), 
+        }
+        labels = {
+            'email': 'Email',
+            'phone': 'Phone Number',
+            'organization': 'Organization',
+            'address': 'Organization Address',
+            'password1': 'Password',
+            'password1': 'Comfirm Password',
+        }
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -26,6 +43,10 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('label_suffix', '')
+        super(UserCreationForm, self).__init__(*args, **kwargs)
 
 
 class UserChangeForm(forms.ModelForm):

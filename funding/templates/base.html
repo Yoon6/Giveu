@@ -20,7 +20,7 @@
         <b class="logo" onclick="location.href='{% url "funding_list" %}';" style="cursor: pointer">GiveU</b>
         <div>
             {% if user.is_authenticated %}
-                <span>{{user.email}}</span>
+                <span>{{user.email}}&nbsp;&nbsp;</span>
                 <button class="ui positive basic button" onclick="location.href='{% url "logout" %}';">Logout</button>
             {% else %}
                 <button class="ui positive basic button" onclick="location.href='{% url "login" %}';">Login</button>
