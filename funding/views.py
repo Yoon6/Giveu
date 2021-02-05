@@ -33,6 +33,9 @@ def funding_list(request):
 def funding_create(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
 
+    if not request.user.is_organization: ## 업체 회원이 아니면 list로 리다이렉트
+        return redirect('funding_list')
+        
     if request.method == 'POST':
         funding = Funding()
 
@@ -48,6 +51,7 @@ def funding_create(request, post_id):
         funding.community = request.POST['community']
         funding.community_address = request.POST['communityAddress']
         funding.save()
+        post.delete() # 채택하면 원글 삭제
 
         return redirect('funding_detail', funding.id)
 
@@ -60,6 +64,10 @@ def funding_create(request, post_id):
 @return : detail 페이지, 해당 펀딩의 model
 '''
 def funding_detail(request, funding_id):
+    if not request.user.is_authenticated: # 로그인을 안했으면 글 못읽게
+        return redirect('funding_list')
+
+
     funding = get_object_or_404(Funding, pk=funding_id)
     return render(request, "funding_detail.html", {"funding":funding})
 

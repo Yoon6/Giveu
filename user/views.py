@@ -2,9 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import UserCreationForm
+from django.contrib.messages import constants as messages_constants
+
+MESSAGE_LEVEL = messages_constants.DEBUG
 
 # 회원 가입
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('funding_list')
     # signup 으로 POST 요청이 왔을 때, 새로운 유저를 만드는 절차를 밟는다.
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -13,14 +18,6 @@ def signup(request):
             user = form.save()
             auth.login(request, user)
             return redirect('funding_list')
-
-        # # password와 confirm에 입력된 값이 같다면
-        # if request.POST['password'] == request.POST['confirm']:
-        #     # user 객체를 새로 생성
-        #     user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
-        #     # 로그인 한다
-        #     auth.login(request, user)
-        #     return redirect('home')
     else:
         form = UserCreationForm()
     # signup으로 GET 요청이 왔을 때, 회원가입 화면을 띄워준다.
@@ -28,6 +25,8 @@ def signup(request):
 
 # 로그인
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('funding_list')
     # login으로 POST 요청이 들어왔을 때, 로그인 절차를 밟는다.
     if request.method == 'POST':
         # login.html에서 넘어온 username과 password를 각 변수에 저장한다.

@@ -10,12 +10,12 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ('email', 'phone', 'organization', 'address', 'is_admin', 'is_active')
+    list_display = ('email', 'phone', 'organization', 'address', 'is_admin', 'is_active', 'is_organization')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('phone', 'organization', 'address',)}),
-        ('Permissions', {'fields': ('is_admin',)}),
+        ('Permissions', {'fields': ('is_admin','is_active', 'is_organization')}),
     )
 
     add_fieldsets = (
@@ -30,4 +30,4 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
-admin.site.unregister(Group)
+# admin.site.unregister(Group)
