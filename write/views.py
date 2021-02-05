@@ -10,7 +10,10 @@ def home(request):
 
 
 def create(request):
-    post = Post()
+
+    if not request.user.is_authenticated:
+        return redirect('login')
+
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -21,10 +24,13 @@ def create(request):
     return render(request, 'create.html', {'form':form})
 
 def detail(request, post_id):
+    if not request.user.is_authenticated: # 로그인을 안했으면 글 못읽게
+        return redirect('home')
     post_detail = get_object_or_404(Post, pk=post_id)
     return render(request, 'detail.html', {'post':post_detail})
 
 def delete(request, post_id):
+
     post = Post.objects.get(pk=post_id)
     post.delete()
     return redirect('home')

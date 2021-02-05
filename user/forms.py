@@ -11,7 +11,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'phone', 'organization', 'address')
+        fields = ('email', 'phone', 'organization', 'address', 'is_organization')
         
         widgets = {
             'email': forms.TextInput(attrs={'placeholder':'abc123@gmail.com'}), 
@@ -20,6 +20,7 @@ class UserCreationForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'placeholder':'address', 'disabled':True, 'required':False}), 
             'password1': forms.TextInput(attrs={'placeholder':'password'}),  
             'password2': forms.TextInput(attrs={'placeholder':'confirm password'}), 
+            'is_organization': forms.HiddenInput(),
         }
         labels = {
             'email': 'Email',
@@ -49,6 +50,7 @@ class UserCreationForm(forms.ModelForm):
         super(UserCreationForm, self).__init__(*args, **kwargs)
         self.fields['organization'].required = False
         self.fields['address'].required = False
+        self.fields['is_organization'].initial = False
 
 
 class UserChangeForm(forms.ModelForm):

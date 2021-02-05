@@ -13,7 +13,6 @@ class UserManager(BaseUserManager):
             organization=organization,
             address=address,
         )
-
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -41,7 +40,7 @@ class User(AbstractBaseUser):
     organization=models.CharField(max_length=100)
     address=models.CharField(max_length=100)
     
-    
+    is_organization = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
