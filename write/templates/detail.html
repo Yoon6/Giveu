@@ -7,32 +7,58 @@
 
 {% block content %}
     <div class="wrap">
-        <button class="ui green basic button" href="{% url 'home' %}">List</button>
+        
+
+    <h1>{{post.title}}</h1>
+    <br>
+
+        <div>
+            <dl>
+                <img src="{{ post.picture.url }}" style="width:60%">
+            </dl>
+            
+        </div>
+    <div>  
+        <table class="ui definition table" style="font-size:20px;">
+            <thead>
+              </thead>
+            <tbody>
+              <tr>
+                <td>이름</td>
+                <td>{{post.name}}</td>
+               
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{{post.email}}</td>
+                
+              </tr>
+              <tr>
+                <td>주소</td>
+                <td>{{post.address}}</td>
+                
+              </tr>
+              <tr>
+                <td>분류</td>
+                <td>{{post.productType}}</td>
+                
+              </tr>
+              <tr>
+                <td>목표 수량</td>
+                <td>{{post.productNum}}</td>
+              </tr>
+              <tr>
+                <td>내용</td>
+                <td>{{post.bodyText}}</td>
+              </tr>
+          </tbody></table>
+    
         <div class="ui three item menu">
             <a class="active item" href="{% url 'update' post.pk %}">수정하기</a>
             <a class="item" href="{% url 'delete' post.pk %}">삭제하기</a>
             <a class="item" href="{% url 'funding_create' post.pk %}">채택하기</a>
         </div><br><br>
-
-    <h1> 상세 페이지</h1>
-    <br>
-
-    <div>
-        <dl>
-            <img src="{{ post.picture.url }}" style="max-height: 300px;">
-        </dl>
-        
-    </div>
-    <div>
-        <h2>Title : {{post.title}}</h2>
-    <h2>id : {{post.pk}}</h2>
-    <h2>Name :{{post.name}}</h2>
-    <h2>Email :{{post.email}}</h2>
-    <h2>Address :{{post.address}}</h2>
-    <h2>Category : {{post.productType}}</h2>
-    <h2>Goal quantity: {{post.productNum}}<br><br></h2>
-    <h2>Content <br><br></h2>
-    <h3>{{post.bodyText}}</h3>
+        <a href="{% url 'home' %}"><button class="ui primary button">목록으로</button></a>
     </div>
 
 
