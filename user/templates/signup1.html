@@ -13,11 +13,11 @@
     <script>
         function check(num){
             if(Number(num) ===1){
-                document.getElementsByName('community')[0].disabled=true;
-                document.getElementsByName('communityAddress')[0].disabled=true;
+                document.getElementsByName('organization')[0].disabled=true;
+                document.getElementsByName('address')[0].disabled=true;
             }else{
-                document.getElementsByName('community')[0].disabled=false;
-                document.getElementsByName('communityAddress')[0].disabled=false;
+                document.getElementsByName('organization')[0].disabled=false;
+                document.getElementsByName('address')[0].disabled=false;
             }
         }
     </script>
@@ -26,16 +26,22 @@
 
 <body>
     <div class="top">
-        <b class="logo">GiveU</b>
+        <b class="logo" onclick="location.href='{% url "funding_list" %}';" style="cursor: pointer">GiveU</b>
         <div>
-            <button class="ui positive basic button" onclick="location.href='{% url "login" %}';">Login</button>
+            {% if user.is_authenticated %}
+                <span>{{user.email}}</span>
+                <button class="ui positive basic button" onclick="location.href='{% url "logout" %}';">Logout</button>
+            {% else %}
+                <button class="ui positive basic button" onclick="location.href='{% url "login" %}';">Login</button>
+            {% endif %}
             <button class="ui positive basic button" onclick="location.href='{% url "create" %}';">Request</button>
             <button class="ui positive basic button" onclick="location.href='{% url "home" %}';">Discover</button>
             <button class="ui positive basic button" onclick="location.href='{% url "funding_list" %}';">Donate</button>
         </div>
     </div>
     <div class="signup-container">
-        <form action method="POST">
+        <form action="" method="POST">
+            {% csrf_token %}
             <div class="ui form" id="check-box">
                 <div class="inline fields">
                     <div class="field">
@@ -54,34 +60,27 @@
             </div>
             <div class="signup-box">
                 <div>
-                    <b class="signup-info">이메일</b><input type="text" name="email" placeholder="ex) 1234@gmail.com"/>
+                    <b class="signup-info">{{form.email.label_tag}}</b>{{form.email}}
                 </div>
                 <div>
-                    <b class="signup-info">비밀번호</b><input type="text" name="password" placeholder="password"/>
+                    <b class="signup-info">{{form.password1.label_tag}}</b>{{form.password1}}
                 </div>
                 <div>
-                    <b class="signup-info">휴대폰 번호</b><input type="text" name="phone" placeholder="ex) 01012345678"/>
+                    <b class="signup-info">{{form.password2.label_tag}}</b>{{form.password2}}
                 </div>
                 <div>
-                    <b class="signup-info">소속 단체명</b><input type="text" name="community" placeholder="community" disabled/>
+                    <b class="signup-info">{{form.phone.label_tag}}</b>{{form.phone}}
                 </div>
                 <div>
-                    <b class="signup-info">단체 주소</b><input type="text" name="communityAddress" placeholder="address" disabled/>
+                    <b class="signup-info">{{form.organization.label_tag}}</b>{{form.organization}}
+                </div>
+                <div>
+                    <b class="signup-info">{{form.address.label_tag}}</b>{{form.address}}
                 </div>
             </div>
             <input type="submit" class="ui primary button" id="signup-btn" value="회원가입">
         </form>
     </div>
-    <!-- <div class="login-container">
-            <div class="login-box">
-                <form action method="POST" >
-                    <div class="login-email">이메일 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="email" placeholder="email"/></div>
-                    <div class="login-password" name="password">비밀번호 <input type="text" name="password" placeholder="password"/></div>
-                    <input type="submit" class="ui primary button" id="login-btn" value="로그인">
-                </form>
-            </div>
-            <button class="ui secondary basic button" onclick="location.href='{% url "signUp" %}';">회원 가입</button>
-    </div> -->
 </body>
 
 </html>

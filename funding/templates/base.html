@@ -19,7 +19,12 @@
     <div class="top">
         <b class="logo" onclick="location.href='{% url "funding_list" %}';" style="cursor: pointer">GiveU</b>
         <div>
-            <button class="ui positive basic button" onclick="location.href='{% url "login" %}';">Login</button>
+            {% if user.is_authenticated %}
+                <span>{{user.email}}&nbsp;&nbsp;</span>
+                <button class="ui positive basic button" onclick="location.href='{% url "logout" %}';">Logout</button>
+            {% else %}
+                <button class="ui positive basic button" onclick="location.href='{% url "login" %}';">Login</button>
+            {% endif %}
             <button class="ui positive basic button" onclick="location.href='{% url "create" %}';">Request</button>
             <button class="ui positive basic button" onclick="location.href='{% url "home" %}';">Discover</button>
             <button class="ui positive basic button" onclick="location.href='{% url "funding_list" %}';">Donate</button>

@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block headscript %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/request.css' %}">
+{% endblock %}
 {% block content %}
     <div class="wrap">
         <h1>수정하기</h1>
