@@ -40,7 +40,8 @@ def funding_create(request, post_id):
     if request.method == 'POST':
         funding = Funding()
 
-        funding.name = post.name
+        # funding.name = post.name
+        funding.name = request.user
         funding.title = post.title
         funding.bodyText = post.bodyText
         funding.product_type = post.productType

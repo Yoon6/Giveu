@@ -1,9 +1,12 @@
 from django.db import models
 
+from user.models import User
+
 # Create your models here.
 
 class Funding(models.Model):
-    name = models.CharField(max_length=50) # 올린 유저 이름
+    name = models.ForeignKey(User, on_delete=models.CASCADE) # 올린 유저 이름
+    # name = models.CharField(max_length=50) # 올린 유저 이름
     title = models.CharField(max_length=200) # 펀딩 이름
     bodyText = models.TextField() # 펀딩 글 상세내용
     created_at = models.DateField(auto_now=True) # 펀딩 글 작성 시간
@@ -18,6 +21,8 @@ class Funding(models.Model):
     community_address = models.CharField(max_length=500) # 보내야할 주소
     
     current_product_num = models.IntegerField(default=0) # 현재 기부 현황
+
+    # user = models.ManyToManyField(User, related_name="user_set", blank=True)
 
     def __str__(self):
         return self.title

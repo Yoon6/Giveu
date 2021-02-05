@@ -17,7 +17,9 @@ def create(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            instance = form.save()
+            instance = form.save(commit=False)
+            instance.email = request.user
+            instance.save()
             return redirect('detail', post_id = instance.pk)
     else:
         form = PostForm()
