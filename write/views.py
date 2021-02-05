@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .models import Post
 from .forms import PostForm
 
@@ -27,7 +27,8 @@ def create(request):
 
 def detail(request, post_id):
     if not request.user.is_authenticated: # 로그인을 안했으면 글 못읽게
-        return redirect('home')
+        posts = Post.objects
+        return render(request, 'home.html', {'posts':posts, 'error':'error'})
     post_detail = get_object_or_404(Post, pk=post_id)
     return render(request, 'detail.html', {'post':post_detail})
 

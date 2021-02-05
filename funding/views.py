@@ -67,8 +67,8 @@ def funding_create(request, post_id):
 '''
 def funding_detail(request, funding_id):
     if not request.user.is_authenticated: # 로그인을 안했으면 글 못읽게
-        return redirect('funding_list')
-
+        funding_list = Funding.objects.all()
+        return render(request, "funding_list.html", {"funding_list":funding_list, 'error':'error'})
 
     funding = get_object_or_404(Funding, pk=funding_id)
     return render(request, "funding_detail.html", {"funding":funding})
