@@ -24,12 +24,16 @@ class Funding(models.Model):
 
     user = models.ManyToManyField(User, related_name="user_set", blank=True)
 
+    is_closed = models.BooleanField(default=False)
+
     def __str__(self):
         return self.title
     
     # @property
     def funding_counter(self):
         if self.current_product_num == self.product_num:
+            self.is_closed = True
+            self.save()
             return -1
         self.current_product_num += 1
         self.save()

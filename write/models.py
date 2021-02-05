@@ -4,7 +4,7 @@ from user.models import User
 
 # Create your models here.
 class Post(models.Model):
-    # name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     bodyText = models.TextField()
     productType = models.CharField(max_length=200)

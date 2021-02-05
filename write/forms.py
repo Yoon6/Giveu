@@ -5,11 +5,11 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         # fields = ['title', 'name', 'bodyText', 'productType', 'productNum', 'email', 'address', 'picture']
-        fields = ['title', 'bodyText', 'productType', 'productNum', 'address', 'picture']
+        fields = ['title', 'name', 'bodyText', 'productType', 'productNum', 'address', 'picture']
         
         widgets = {
             'title': forms.TextInput(attrs={'class':'input-box', 'name':'title', 'placeholder':'Title'}), 
-            # 'name': forms.TextInput(attrs={'class':'input-box', 'name':'name', 'placeholder':'user name'}), 
+            'name': forms.TextInput(attrs={'class':'input-box', 'name':'name', 'placeholder':'user name'}), 
             'bodyText': forms.Textarea(attrs={'class':'desc', 'name':'bodyText'}),
             'productType': forms.TextInput(attrs={'class':'input-box', 'name':'productType', 'placeholder':'Type of product'}), 
             'productNum': forms.NumberInput(attrs={'class':'input-box', 'name':'productNum', 'placeholder':'num'}),  
@@ -19,7 +19,7 @@ class PostForm(forms.ModelForm):
         }
         labels = {
             'title': '제목',
-            # 'name': '이름',
+            'name': '이름',
             'bodyText': '신청 내용',
             'productType': '희망 물품',
             'productNum': '희망 수량',

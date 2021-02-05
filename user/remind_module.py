@@ -48,7 +48,7 @@ def sms_reminder(funding_or_closed, user_id, funding_title='<default>'):
         remind_text = '\'' + funding_title + '\'' + ' 펀딩에 참여해주셔서 감사합니다.\n- 당신의 따듯한 마음을 전해드리는 Giveu'
     # 펀딩 마감 시 펀딩에 참여한 참여자들에게 문자 전송
     elif funding_or_closed == 'closed':
-        remind_text = funding_title + '에서 진행한 펀딩이 마감되었습니다.\n- 당신의 따듯한 마음을 전해드리는 Giveu'
+        remind_text = '\'' + funding_title + '\'' + ' 펀딩이 마감되었습니다.\n- 당신의 따듯한 마음을 전해드리는 Giveu'
     else:
         return "Error : SMS 알림 서비스를 실행할 수 없습니다."
 

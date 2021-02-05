@@ -33,13 +33,17 @@ def detail(request, post_id):
     return render(request, 'detail.html', {'post':post_detail})
 
 def delete(request, post_id):
-
     post = Post.objects.get(pk=post_id)
+    if request.user != post.email:
+        return redirect('detail', post.pk)
     post.delete()
     return redirect('home')
 
 def update(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
+
+    if request.user != post.email:
+        return redirect('detail', post.pk)
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
