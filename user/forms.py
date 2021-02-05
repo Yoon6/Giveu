@@ -20,7 +20,7 @@ class UserCreationForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'placeholder':'address', 'disabled':True, 'required':False}), 
             'password1': forms.TextInput(attrs={'placeholder':'password'}),  
             'password2': forms.TextInput(attrs={'placeholder':'confirm password'}), 
-            'is_organization': forms.HiddenInput(),
+            'is_organization': forms.CheckboxInput(),
         }
         labels = {
             'email': 'Email',

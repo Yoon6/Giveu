@@ -25,6 +25,7 @@ class UserManager(BaseUserManager):
             address=address,
             password=password,
         )
+        user.is_organization = True
         user.is_admin = True
         user.save(using=self._db)
         return user

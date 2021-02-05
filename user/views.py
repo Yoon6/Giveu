@@ -13,14 +13,8 @@ def signup(request):
             user = form.save()
             auth.login(request, user)
             return redirect('funding_list')
-
-        # # password와 confirm에 입력된 값이 같다면
-        # if request.POST['password'] == request.POST['confirm']:
-        #     # user 객체를 새로 생성
-        #     user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
-        #     # 로그인 한다
-        #     auth.login(request, user)
-        #     return redirect('home')
+        else:
+            return render(request, 'signup1.html', {'form':form, 'error':'error'})
     else:
         form = UserCreationForm()
     # signup으로 GET 요청이 왔을 때, 회원가입 화면을 띄워준다.
