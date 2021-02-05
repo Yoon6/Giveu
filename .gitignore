@@ -389,4 +389,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# twilio auth_token
+twilio.json
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,python,venv,django,pycharm,vscode

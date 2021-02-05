@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 
 from .models import Funding
 from write.models import Post
+from user.remind_module import sms_reminder
 
 import json
 
@@ -111,12 +112,14 @@ def funding_delete(request, funding_id):
 @require_POST
 def funding_counter(request):
     funding_id = request.POST['funding_id']
+    user_id = request.POST['user_id']
 
     funding = get_object_or_404(Funding, pk=funding_id)
 
     result = funding.funding_counter() # 해당 펀딩 글의 펀딩 카운트 1 증가
     if result != -1:
         message = 'Success'
+        sms_reminder('funding', user_id, funding.title)
     else:
         message = 'Fail'
 

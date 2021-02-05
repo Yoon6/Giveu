@@ -16,7 +16,7 @@
         <p id="fundingCount" class="funding-detail-cur">현재 기부 현황 : {{ funding.current_product_num }} /
             {{ funding.product_num }}</p>
         <button id="funding" class="ui primary button" onclick="fundingCounter(this)"
-            name="{{funding.id}}">펀딩하기</button><br>
+            name="{{funding.id}}-{{user.id}}">펀딩하기</button><br>
     </div>
     <b class="funding-detail-deadline">마감 기한 : {{ funding.deadline }}</b>
     <a href="{% url 'funding_list' %}"><button class="ui primary button">목록으로</button></a>
@@ -28,13 +28,17 @@
 {% block script %}
 <script>
     function fundingCounter(e) {
-        id = $(e).attr('name');
+        ids = $(e).attr('name').split("-");
+
+        fundingId = ids[0];
+        userId = ids[1];
 
         $.ajax({
             type: 'POST',
             url: "{% url 'count' %}",
             data: {
-                "funding_id": id,
+                "funding_id": fundingId,
+                "user_id": userId,
                 "csrfmiddlewaretoken": '{{ csrf_token }}',
             },
             dataType: "json",
