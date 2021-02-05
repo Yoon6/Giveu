@@ -22,7 +22,7 @@ class Funding(models.Model):
     
     current_product_num = models.IntegerField(default=0) # 현재 기부 현황
 
-    # user = models.ManyToManyField(User, related_name="user_set", blank=True)
+    user = models.ManyToManyField(User, related_name="user_set", blank=True)
 
     def __str__(self):
         return self.title
