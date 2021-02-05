@@ -16,8 +16,8 @@ class UserCreationForm(forms.ModelForm):
         widgets = {
             'email': forms.TextInput(attrs={'placeholder':'abc123@gmail.com'}), 
             'phone': forms.TextInput(attrs={'placeholder':'ex) +821012345678'}), 
-            'organization': forms.TextInput(attrs={'placeholder':'organization', 'disabled':True}),
-            'address': forms.TextInput(attrs={'placeholder':'address', 'disabled':True}), 
+            'organization': forms.TextInput(attrs={'placeholder':'organization', 'disabled':True, 'required':False}),
+            'address': forms.TextInput(attrs={'placeholder':'address', 'disabled':True, 'required':False}), 
             'password1': forms.TextInput(attrs={'placeholder':'password'}),  
             'password2': forms.TextInput(attrs={'placeholder':'confirm password'}), 
         }
@@ -47,6 +47,8 @@ class UserCreationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')
         super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['organization'].required = False
+        self.fields['address'].required = False
 
 
 class UserChangeForm(forms.ModelForm):
