@@ -3,7 +3,7 @@
 ## Google Developer Students Clubs
 ## KOREA SOLUTION CHALLENGE HACKATHON
 
-### Team Giveu
+### [Team Giveu](http://ec2-3-36-139-185.ap-northeast-2.compute.amazonaws.com/)
 - Our Goal
     - 'No Povery' in Sustainable Development Goals
     - 개인의 불용품 기부로 빈곤 퇴치를 해결하고자 함
